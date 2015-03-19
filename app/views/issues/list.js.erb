@@ -1,0 +1,18 @@
+var opts = {
+//  "dataFormatX": function (x) { return x; },//return d3.time.format('%Y-%m-%d').parse(x); },
+//  "tickFormatX": function (x) { return d3.time.format('%A')(x); },
+  "mouseover": function (d, i) {
+    var pos = $(this).offset();
+    $(tt).text(d.x + ': ' + d.y)
+      .css({top: topOffset + pos.top, left: pos.left + leftOffset})
+      .show();
+  },
+  "mouseout": function (x) {
+    $(tt).hide();
+  }
+};
+
+console.log(<%= @vals.html_safe %>);
+var myChart = new xChart('line-dotted',<%= @vals.html_safe %>[0] , '#myChart', opts);
+var myChart = new xChart('bar',<%= @vals.html_safe %>[1] , '#myChartInc', opts);
+var myChart = new xChart('bar',<%= @vals.html_safe %>[2] , '#myChartDec', opts);

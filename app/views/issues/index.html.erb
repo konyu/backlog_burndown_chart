@@ -1,0 +1,38 @@
+<h1>Listing Issues</h1>
+<%= form_tag('/issues/list', data: {remote: true}) do |f| %>
+<%= select("date", "year", [["2015", "2015"],["2016", "2016"]]) %>年
+<% months = (1..12).map{|num| [num.to_s, num.to_s]} %>
+<%= select("date", "month", months) %>月
+<% weeks = (1..5).map{|num| [num.to_s, num.to_s + "w"]} %>
+<%= select("date", "week", weeks) %>週
+<%= submit_tag('Start Ajax') -%>
+<% end %>
+
+<p><span ></span>週のバーンダウンチャート</p>
+<figure style="width: 800px; height: 300px;" id="myChart"></figure>
+<p><span ></span>週の追加チケット</p>
+<figure style="width: 800px; height: 150px;" id="myChartInc"></figure>
+<p><span ></span>週の減らしたチケット</p>
+<figure style="width: 800px; height: 150px;" id="myChartDec"></figure>
+
+<%= link_to 'New Issue', new_issue_path %>
+
+<script type="text/javascript">
+
+var tt = document.createElement('div'),
+  leftOffset = -(~~$('html').css('padding-left').replace('px', '') + ~~$('body').css('margin-left').replace('px', '')),
+  topOffset = -32;
+tt.className = 'ex-tooltip';
+document.body.appendChild(tt);
+
+
+// $("#go").click(function(){
+//   $.post("/issues/list", function(data){
+//     console.log(data);
+//     var myChart = new xChart('line-dotted', data[0], '#myChart', opts);
+//     var myChart = new xChart('bar', data[1], '#myChartInc', opts);
+//     var myChart = new xChart('bar', data[2], '#myChartDec', opts);
+//   });
+// });
+
+</script>
